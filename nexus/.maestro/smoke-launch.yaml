@@ -1,0 +1,5 @@
+appId: com.greenovate.nexus
+---
+- launchApp
+- assertVisible: "Release Readiness Check"
+- assertVisible: "Validate Readiness"
