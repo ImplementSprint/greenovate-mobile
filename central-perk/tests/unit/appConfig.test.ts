@@ -22,7 +22,7 @@ describe('appConfig', () => {
     const config = getAppConfig();
 
     expect(config).toEqual({
-      appName: 'Central Perk',
+      appName: 'Template Repo Mobile Single',
       environment: 'development',
       apiBaseUrl: 'https://api.example.com',
     });

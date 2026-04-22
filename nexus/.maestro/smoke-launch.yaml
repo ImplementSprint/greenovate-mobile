@@ -1,4 +1,4 @@
-appId: com.greenovate.nexus
+appId: com.implementsprint.mobile
 ---
 - launchApp
 - assertVisible: "Release Readiness Check"

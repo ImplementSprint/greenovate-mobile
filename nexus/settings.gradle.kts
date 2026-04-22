@@ -52,5 +52,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MobileSingleKotlin"
+rootProject.name = "Nexus"
 include(":app")

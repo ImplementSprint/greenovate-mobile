@@ -15,7 +15,7 @@ This repository is a reusable Native Kotlin Android boilerplate for the single-s
 app/
   src/
     main/
-      java/com.greenovate.nexus/
+      java/com/implementsprint/mobile/
       res/
         values/
     androidTest/

@@ -4,7 +4,7 @@ import { HomeScreen } from '../../src/features/home/screens/HomeScreen';
 
 jest.mock('@config/appConfig', () => ({
   getAppConfig: jest.fn(() => ({
-    appName: 'Shelf Awareness',
+    appName: 'Template Repo Mobile Single',
     environment: 'development',
     apiBaseUrl: 'https://api.example.com',
   })),
@@ -26,8 +26,8 @@ describe('HomeScreen', () => {
     const smokeMarker = children[3];
 
     expect(title.props.testID).toBe('home-title');
-    expect(title.props.children).toBe('Shelf Awareness');
-    expect(subtitle.props.children).toBe('Greenovate Mobile App (Expo)');
+    expect(title.props.children).toBe('Template Repo Mobile Single');
+    expect(subtitle.props.children).toBe('Single-root Expo boilerplate (TypeScript-first)');
 
     const badgeChildren = Children.toArray(badge.props.children).filter(isValidElement);
     expect(badgeChildren).toHaveLength(1);

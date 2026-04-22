@@ -6,11 +6,11 @@ plugins {
 val kotestVersion = "5.8.1"
 
 android {
-    namespace = "com.greenovate.nexus"
+    namespace = "com.implementsprint.mobile"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.greenovate.nexus"
+        applicationId = "com.implementsprint.mobile"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

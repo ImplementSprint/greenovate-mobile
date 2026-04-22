@@ -57,9 +57,9 @@ describe('getExpoConfig', () => {
     const getExpoConfig = loadExpoConfig();
     const config = getExpoConfig();
 
-    expect(config.name).toBe('Shelf Awareness');
+    expect(config.name).toBe('Template Repo Mobile Single');
     expect(config.extra).toEqual({
-      appName: 'Shelf Awareness',
+      appName: 'Template Repo Mobile Single',
       environment: 'development',
       apiBaseUrl: 'https://api.example.com',
     });
