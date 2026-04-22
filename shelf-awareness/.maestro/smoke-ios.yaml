@@ -1,7 +1,7 @@
-appId: com.anonymous.templaterepombsingle
+appId: com.greenovate.shelfawareness
 tags:
     - ios
 ---
 - launchApp:
     clearState: true
-- assertVisible: "Template Repo Mobile Single"
+- assertVisible: "Shelf Awareness"
