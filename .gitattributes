@@ -1,0 +1,2 @@
+*.yaml text eol=crlf
+*.yml text eol=crlf
