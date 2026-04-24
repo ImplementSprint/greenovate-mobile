@@ -1,0 +1,23 @@
+appId: com.implementsprint.mobile
+---
+- launchApp
+- tapOn:
+    id: "com.implementsprint.mobile:id/environmentInput"
+- eraseText
+- inputText: "main"
+- tapOn:
+    id: "com.implementsprint.mobile:id/apiBaseUrlInput"
+- eraseText
+- inputText: "http://localhost/mock"
+- tapOn: "Validate Readiness"
+- assertVisible: "Not ready"
+- tapOn:
+    id: "com.implementsprint.mobile:id/environmentInput"
+- eraseText
+- inputText: "uat"
+- tapOn:
+    id: "com.implementsprint.mobile:id/apiBaseUrlInput"
+- eraseText
+- inputText: "https://api.example.com"
+- tapOn: "Validate Readiness"
+- assertVisible: "Ready for deployment"
