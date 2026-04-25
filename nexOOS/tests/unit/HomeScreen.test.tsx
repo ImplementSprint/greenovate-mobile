@@ -4,7 +4,7 @@ import { HomeScreen } from '../../src/features/home/screens/HomeScreen';
 
 jest.mock('@config/appConfig', () => ({
   getAppConfig: jest.fn(() => ({
-    appName: 'Template Repo Mobile Single',
+    appName: 'NexOOS',
     environment: 'development',
     apiBaseUrl: 'https://api.example.com',
   })),
@@ -26,7 +26,7 @@ describe('HomeScreen', () => {
     const smokeMarker = children[3];
 
     expect(title.props.testID).toBe('home-title');
-    expect(title.props.children).toBe('Template Repo Mobile Single');
+    expect(title.props.children).toBe('NexOOS');
     expect(subtitle.props.children).toBe('Single-root Expo boilerplate (TypeScript-first)');
 
     const badgeChildren = Children.toArray(badge.props.children).filter(isValidElement);

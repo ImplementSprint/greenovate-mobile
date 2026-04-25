@@ -22,7 +22,7 @@ export function resolveEnvironment(value: string | undefined): RuntimeEnvironmen
 
 export function getAppConfig(): AppConfig {
   const extra = Constants.expoConfig?.extra as AppConfigExtra | undefined;
-  const appName = extra?.appName ?? process.env.EXPO_PUBLIC_APP_NAME ?? 'Template Repo Mobile Single';
+  const appName = extra?.appName ?? process.env.EXPO_PUBLIC_APP_NAME ?? 'Central Perk';
   const environment = resolveEnvironment(extra?.environment ?? process.env.EXPO_PUBLIC_APP_ENV);
   const apiBaseUrl = extra?.apiBaseUrl ?? process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://api.example.com';
 

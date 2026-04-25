@@ -3,7 +3,7 @@ import { withGradleProperties } from 'expo/config-plugins';
 
 type RuntimeEnvironment = 'development' | 'staging' | 'production';
 
-const defaultAppName = 'Template Repo Mobile Single';
+const defaultAppName = 'NexOOS';
 const defaultEnvironment: RuntimeEnvironment = 'development';
 const defaultApiBaseUrl = 'https://api.example.com';
 const kotlinVersion = '2.0.21';
@@ -48,20 +48,20 @@ export default function getExpoConfig(): ExpoConfig {
 
   return withCiKotlinGradleProperty({
     name: appName,
-    slug: 'template-repo-mobile-single',
+    slug: 'nexoos',
     version: '1.0.0',
     orientation: 'portrait',
-    scheme: 'templatemobilesingle',
+    scheme: 'nexoos',
     userInterfaceStyle: 'automatic',
     jsEngine: 'hermes',
     experiments: {
       tsconfigPaths: true,
     },
     android: {
-      package: 'com.anonymous.templaterepombsingle',
+      package: 'com.anonymous.nexoos',
     },
     ios: {
-      bundleIdentifier: 'com.anonymous.templaterepombsingle',
+      bundleIdentifier: 'com.anonymous.nexoos',
       infoPlist: {
         ITSAppUsesNonExemptEncryption: false,
       },

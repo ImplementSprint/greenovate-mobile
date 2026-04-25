@@ -3,7 +3,7 @@ import { withGradleProperties } from 'expo/config-plugins';
 
 type RuntimeEnvironment = 'development' | 'staging' | 'production';
 
-const defaultAppName = 'Template Repo Mobile Single';
+const defaultAppName = 'Shelf Awareness';
 const defaultEnvironment: RuntimeEnvironment = 'development';
 const defaultApiBaseUrl = 'https://api.example.com';
 const kotlinVersion = '2.0.21';
@@ -48,20 +48,20 @@ export default function getExpoConfig(): ExpoConfig {
 
   return withCiKotlinGradleProperty({
     name: appName,
-    slug: 'template-repo-mobile-single',
+    slug: 'shelf-awareness',
     version: '1.0.0',
     orientation: 'portrait',
-    scheme: 'templatemobilesingle',
+    scheme: 'shelfawareness',
     userInterfaceStyle: 'automatic',
     jsEngine: 'hermes',
     experiments: {
       tsconfigPaths: true,
     },
     android: {
-      package: 'com.anonymous.templaterepombsingle',
+      package: 'com.anonymous.shelfawareness',
     },
     ios: {
-      bundleIdentifier: 'com.anonymous.templaterepombsingle',
+      bundleIdentifier: 'com.anonymous.shelfawareness',
       infoPlist: {
         ITSAppUsesNonExemptEncryption: false,
       },

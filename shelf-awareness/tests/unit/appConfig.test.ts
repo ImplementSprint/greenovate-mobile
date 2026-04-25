@@ -22,7 +22,7 @@ describe('appConfig', () => {
     const config = getAppConfig();
 
     expect(config).toEqual({
-      appName: 'Template Repo Mobile Single',
+      appName: 'Shelf Awareness',
       environment: 'development',
       apiBaseUrl: 'https://api.example.com',
     });
