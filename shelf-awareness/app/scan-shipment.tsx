@@ -67,7 +67,7 @@ export default function ScanShipmentScreen() {
 
     try {
       const data = await getShipmentByTracking(value);
-      console.log('[SCAN] Shipment Found:', JSON.stringify(data, null, 2));
+
       if (data) {
         setShipment(data);
         await saveRecentScan(data); // Save to history immediately
@@ -96,7 +96,7 @@ export default function ScanShipmentScreen() {
     setMarkError(null);
     try {
       const updated = await markAsReceived(shipment.id);
-      console.log('[SCAN] Mark as Received Success:', updated);
+
       await saveRecentScan(updated);
       setShipment(updated);
       setPhase('success');

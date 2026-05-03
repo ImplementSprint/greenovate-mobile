@@ -20,7 +20,7 @@ export default function ScanStockScreen() {
     setError(null);
     setStockResult(null);
     try {
-      const baseUrl = process.env.EXPO_PUBLIC_API_BASE_URL || 'http://localhost:3001/api';
+      const baseUrl = process.env.EXPO_PUBLIC_API_BASE_URL;
       const response = await fetch(`${baseUrl}/products/${sku}/stock`);
       
       if (!response.ok) {
