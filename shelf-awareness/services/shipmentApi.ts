@@ -5,7 +5,7 @@
 
 
 // Using your PC's IP since it's reachable via hotspot
-const BASE_URL = 'http://172.20.10.3:4005'; 
+const BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL || ''; 
 
 export interface Shipment {
   id: string;
