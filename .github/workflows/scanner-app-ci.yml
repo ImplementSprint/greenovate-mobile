@@ -1,0 +1,32 @@
+name: Scanner App Testing
+
+on:
+  push:
+    branches:
+      - scm-mobile
+
+jobs:
+  test:
+    name: Run Scanner App Tests
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./shelf-awareness
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: ./shelf-awareness/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
