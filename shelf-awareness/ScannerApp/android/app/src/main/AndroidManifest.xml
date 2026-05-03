@@ -12,6 +12,7 @@
         android:enableOnBackInvokedCallback="false"
         android:label="SCM Scanner"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="false"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
