@@ -6,4 +6,5 @@
     <string name="api_base_url_hint">API base URL</string>
     <string name="validate_button_label">Validate readiness</string>
     <string name="readiness_idle_state">Enter release details to check readiness.</string>
+    <string name="perm_camera">android.permission.CAMERA</string>
 </resources>
