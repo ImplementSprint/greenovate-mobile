@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Button, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator, TextInput } from 'react-native';
 import { useState } from 'react';
 import { CameraView, useCameraPermissions, BarcodeScanningResult } from 'expo-camera';
-import { palette, spacing, radius, shadow, typography } from '@/constants/design';
+import { palette } from '@/constants/design';
 import { cleanBarcode, isValidBarcode } from '@/utils/barcodeUtils';
 
 
