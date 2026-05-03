@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   View,
   Text,
@@ -40,6 +40,7 @@ export default function DashboardScreen() {
       console.log('[DASHBOARD] Recent Scans:', scansData);
       setRecentScans(scansData);
     } catch (err: any) {
+      console.error('[DASHBOARD] Load error:', err);
       setError('Could not load dashboard data. Pull to refresh.');
     } finally {
       setLoading(false);
@@ -207,9 +208,9 @@ export default function DashboardScreen() {
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function StatCard({ icon, iconColor, bg, label, value }: {
+function StatCard({ icon, iconColor, bg, label, value }: Readonly<{
   icon: string; iconColor: string; bg: string; label: string; value: string;
-}) {
+}>) {
   return (
     <View style={[styles.statCard, { backgroundColor: bg }]}>
       <Ionicons name={icon as any} size={28} color={iconColor} />
@@ -219,7 +220,7 @@ function StatCard({ icon, iconColor, bg, label, value }: {
   );
 }
 
-function SectionHeader({ title, count }: { title: string; count: number }) {
+function SectionHeader({ title, count }: Readonly<{ title: string; count: number }>) {
   return (
     <View style={styles.sectionHeader}>
       <Text style={typography.h3}>{title}</Text>
@@ -232,7 +233,7 @@ function SectionHeader({ title, count }: { title: string; count: number }) {
   );
 }
 
-function EmptyState({ icon, message }: { icon: string; message: string }) {
+function EmptyState({ icon, message }: Readonly<{ icon: string; message: string }>) {
   return (
     <View style={styles.emptyState}>
       <Ionicons name={icon as any} size={36} color={palette.textMuted} />

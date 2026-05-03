@@ -68,12 +68,12 @@ export default function ScanShipmentScreen() {
     try {
       const data = await getShipmentByTracking(value);
       console.log('[SCAN] Shipment Found:', JSON.stringify(data, null, 2));
-      if (!data) {
-        setLookupError('Shipment not found. Check the tracking number and try again.');
-      } else {
+      if (data) {
         setShipment(data);
         await saveRecentScan(data); // Save to history immediately
         Vibration.vibrate(50);
+      } else {
+        setLookupError('Shipment not found. Check the tracking number and try again.');
       }
     } catch (err: any) {
       console.error('[SCAN] Lookup Error:', err);
@@ -127,11 +127,7 @@ export default function ScanShipmentScreen() {
     successAnim.setValue(0);
   };
 
-  // ── Helper ──────────────────────────────────────────────────────────────────
-  const isProcessable = (status: string) => {
-    const s = status.toLowerCase();
-    return s === 'pending' || s === 'initialized' || s === 'handed_to_freight' || s === 'in_transit' || s === 'scheduled';
-  };
+
 
   // ── Permission states ───────────────────────────────────────────────────────
   if (!permission) {
@@ -361,7 +357,14 @@ export default function ScanShipmentScreen() {
               )}
 
               {/* Actions */}
-              {shipment.status.toLowerCase() !== 'received' ? (
+              {shipment.status.toLowerCase() === 'received' ? (
+                <View style={[styles.alreadyReceived]}>
+                  <Ionicons name="information-circle-outline" size={16} color={palette.textMuted} />
+                  <Text style={[typography.bodySmall, { marginLeft: 6 }]}>
+                    This shipment is already <Text style={{ fontWeight: '600' }}>{shipment.status}</Text>.
+                  </Text>
+                </View>
+              ) : (
                 <TouchableOpacity
                   style={[styles.btnPrimary, { marginTop: spacing.lg }]}
                   onPress={handleMarkReceived}
@@ -376,13 +379,6 @@ export default function ScanShipmentScreen() {
                     </>
                   )}
                 </TouchableOpacity>
-              ) : (
-                <View style={[styles.alreadyReceived]}>
-                  <Ionicons name="information-circle-outline" size={16} color={palette.textMuted} />
-                  <Text style={[typography.bodySmall, { marginLeft: 6 }]}>
-                    This shipment is already <Text style={{ fontWeight: '600' }}>{shipment.status}</Text>.
-                  </Text>
-                </View>
               )}
 
               <TouchableOpacity style={styles.btnGhost} onPress={handleReset}>
@@ -397,7 +393,7 @@ export default function ScanShipmentScreen() {
 }
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
-function DetailRow({ icon, label, value }: { icon: string; label: string; value: string }) {
+function DetailRow({ icon, label, value }: Readonly<{ icon: string; label: string; value: string }>) {
   return (
     <View style={styles.detailRow}>
       <Ionicons name={icon as any} size={16} color={palette.primary} style={styles.detailIcon} />
@@ -409,19 +405,19 @@ function DetailRow({ icon, label, value }: { icon: string; label: string; value:
   );
 }
 
-const statusBadgeStyle = (status: string) => ({
-  backgroundColor:
-    status.toLowerCase() === 'received' ? palette.successLight :
-      isPendingStatus(status) ? palette.warningLight :
-        palette.infoLight,
-});
+const statusBadgeStyle = (status: string) => {
+  const s = status.toLowerCase();
+  if (s === 'received') return { backgroundColor: palette.successLight };
+  if (isPendingStatus(status)) return { backgroundColor: palette.warningLight };
+  return { backgroundColor: palette.infoLight };
+};
 
-const statusTextStyle = (status: string) => ({
-  color:
-    status.toLowerCase() === 'received' ? palette.success :
-      isPendingStatus(status) ? palette.warning :
-        palette.info,
-});
+const statusTextStyle = (status: string) => {
+  const s = status.toLowerCase();
+  if (s === 'received') return { color: palette.success };
+  if (isPendingStatus(status)) return { color: palette.warning };
+  return { color: palette.info };
+};
 
 const isPendingStatus = (status: string) => {
   const s = status.toLowerCase();

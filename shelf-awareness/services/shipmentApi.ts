@@ -2,7 +2,7 @@
  * Shipment API service for the ShelfAwareness mobile app.
  * Connects to the warehouse-receiving-service.
  */
-import { Platform } from 'react-native';
+
 
 // Using your PC's IP since it's reachable via hotspot
 const BASE_URL = 'http://172.20.10.3:4005'; 
@@ -11,7 +11,7 @@ export interface Shipment {
   id: string;
   tracking_number: string;
   supplier_name?: string;
-  status: 'pending' | 'received' | 'cancelled' | string;
+  status: 'pending' | 'received' | 'cancelled' | (string & {});
   expected_arrival?: string;
   received_at?: string;
   received_by?: string;
