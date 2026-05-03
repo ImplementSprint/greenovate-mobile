@@ -1,6 +1,6 @@
 <manifest xmlns:android="https://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- NOSONAR -->
 
     <uses-feature
         android:name="android.hardware.camera"
