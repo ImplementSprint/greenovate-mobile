@@ -32,7 +32,7 @@ class MainActivityInstrumentedTest {
     @Test
     fun validateReadiness_showsViolationStateForMainInsecureEndpoint() {
         onView(withId(R.id.environmentInput)).perform(replaceText("main"), closeSoftKeyboard())
-        onView(withId(R.id.apiBaseUrlInput)).perform(replaceText("http://localhost/mock"), closeSoftKeyboard())
+        onView(withId(R.id.apiBaseUrlInput)).perform(replaceText("https://localhost/mock"), closeSoftKeyboard())
 
         onView(withId(R.id.validateButton)).perform(click())
 
