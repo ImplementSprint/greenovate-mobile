@@ -50,5 +50,11 @@
     "react-test-renderer": "^19.1.0",
     "typescript": "~5.9.2"
   },
+  "overrides": {
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8",
+    "cross-spawn": "^7.0.5",
+    "semver": "^7.5.2"
+  },
   "private": true
 }
