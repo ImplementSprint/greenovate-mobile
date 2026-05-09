@@ -13,6 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "greenovate-mobile"
-include(":nexus")
 include(":app")
-project(":app").projectDir = file("nexus/app")
+project(":app").projectDir = file("app")
