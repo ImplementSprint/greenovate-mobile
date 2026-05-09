@@ -39,7 +39,7 @@ class SampleKotestSpec :
         test("rejects insecure endpoint for production-like environments") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = API_URL,
+                    apiBaseUrl = "http://api.example.com",
                     environment = "main",
                 )
 
@@ -105,7 +105,7 @@ class SampleKotestSpec :
         test("rejects non-https non-localhost endpoint for test environment") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://staging.example.com",
+                    apiBaseUrl = "http://staging.example.com",
                     environment = "test",
                 )
 
@@ -116,7 +116,7 @@ class SampleKotestSpec :
         test("returns multiple violations for invalid production-like configuration") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://localhost/mock",
+                    apiBaseUrl = "http://localhost/mock",
                     environment = "main",
                 )
 
