@@ -5,6 +5,8 @@ import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 
+private const val API_URL = "https://api.example.com"
+
 class SampleKotestSpec :
     FunSpec({
         val evaluator = ReleaseReadinessEvaluator()
@@ -12,7 +14,7 @@ class SampleKotestSpec :
         test("marks valid uat endpoint as ready") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://api.example.com",
+                    apiBaseUrl = API_URL,
                     environment = "uat",
                 )
 
@@ -37,7 +39,7 @@ class SampleKotestSpec :
         test("rejects insecure endpoint for production-like environments") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://api.example.com",
+                    apiBaseUrl = API_URL,
                     environment = "main",
                 )
 
@@ -59,7 +61,7 @@ class SampleKotestSpec :
         test("rejects mock path endpoints for production-like environments") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://api.example.com/mock/users",
+                    apiBaseUrl = "$API_URL/mock/users",
                     environment = "uat",
                 )
 
@@ -70,7 +72,7 @@ class SampleKotestSpec :
         test("rejects uppercase mock path endpoints for production-like environments") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://api.example.com/MOCK/users",
+                    apiBaseUrl = "$API_URL/MOCK/users",
                     environment = "main",
                 )
 
@@ -92,7 +94,7 @@ class SampleKotestSpec :
         test("requires valid environment value") {
             val result =
                 evaluator.evaluate(
-                    apiBaseUrl = "https://api.example.com",
+                    apiBaseUrl = API_URL,
                     environment = "preview",
                 )
 

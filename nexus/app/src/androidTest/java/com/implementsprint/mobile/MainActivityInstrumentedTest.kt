@@ -14,6 +14,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+private const val API_URL = "https://api.example.com"
+
 @RunWith(AndroidJUnit4::class)
 class MainActivityInstrumentedTest {
     @get:Rule
@@ -22,7 +24,7 @@ class MainActivityInstrumentedTest {
     @Test
     fun validateReadiness_showsReadyStateForUatHttpsEndpoint() {
         onView(withId(R.id.environmentInput)).perform(replaceText("uat"), closeSoftKeyboard())
-        onView(withId(R.id.apiBaseUrlInput)).perform(replaceText("https://api.example.com"), closeSoftKeyboard())
+        onView(withId(R.id.apiBaseUrlInput)).perform(replaceText(API_URL), closeSoftKeyboard())
 
         onView(withId(R.id.validateButton)).perform(click())
 
