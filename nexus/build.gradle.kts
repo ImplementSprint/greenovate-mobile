@@ -46,43 +46,43 @@ tasks.named("checkLicense") {
 tasks.register("unitTest") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Runs Kotlin unit tests."
-    dependsOn(":app:testDebugUnitTest")
+    dependsOn("app:testDebugUnitTest")
 }
 
 tasks.register("instrumentedTest") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Runs Android instrumentation tests on an emulator/device."
-    dependsOn(":app:connectedDebugAndroidTest")
+    dependsOn("app:connectedDebugAndroidTest")
 }
 
 tasks.register("coverageUnit") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Generates unit-test JaCoCo coverage report."
-    dependsOn(":app:jacocoUnitTestReport")
+    dependsOn("app:jacocoUnitTestReport")
 }
 
 tasks.register("coverageAndroid") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Generates instrumentation-test JaCoCo coverage report."
-    dependsOn(":app:jacocoAndroidTestReport")
+    dependsOn("app:jacocoAndroidTestReport")
 }
 
 tasks.register("coverageMerge") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Generates merged JaCoCo coverage report for unit + instrumentation tests."
-    dependsOn(":app:jacocoMergedCoverageReport")
+    dependsOn("app:jacocoMergedCoverageReport")
 }
 
 tasks.register("coverageVerify") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Verifies unit coverage threshold."
-    dependsOn(":app:jacocoCoverageVerification")
+    dependsOn("app:jacocoCoverageVerification")
 }
 
 tasks.register("lintAndStyleCheck") {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = "Runs Android lint and Kotlin style checks."
-    dependsOn(":app:lintDebug", ":app:ktlintCheck")
+    dependsOn("app:lintDebug", "app:ktlintCheck")
 }
 
 tasks.register("dependencyAudit") {
