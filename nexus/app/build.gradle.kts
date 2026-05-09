@@ -55,6 +55,10 @@ android {
             it.useJUnitPlatform()
         }
     }
+
+    dependencyLocking {
+        lockAllConfigurations()
+    }
 }
 
 ktlint {
