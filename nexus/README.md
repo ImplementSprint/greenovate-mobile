@@ -1,13 +1,15 @@
 # Native Kotlin Android Boilerplate
 
-This repository is a reusable Native Kotlin Android boilerplate for the single-system mobile pipeline. It replaces the previous React Native/Expo implementation.
+This repository is a reusable Native Kotlin Android boilerplate for the single-system mobile pipeline.
 
 ## Stack
 
-- Kotlin
-- Android SDK
+- Kotlin + Android SDK
 - Gradle (Kotlin DSL)
-- JUnit & Espresso
+- Kotest for unit tests
+- Espresso for instrumentation tests
+- Maestro for Android E2E smoke coverage
+- OWASP dependency-check and license-policy gate
 
 ## Structure
 
@@ -17,42 +19,88 @@ app/
     main/
       java/com/implementsprint/mobile/
       res/
-        values/
-    androidTest/
     test/
-  build.gradle.kts
+    androidTest/
+.maestro/
 build.gradle.kts
 settings.gradle.kts
-gradle.properties
 ```
 
-## Commands
+## Verification Commands
 
-- `./gradlew assembleDebug`: Build debug APK
-- `./gradlew assembleRelease`: Build release APK
-- `./gradlew test`: Run unit tests
-- `./gradlew connectedAndroidTest`: Run instrumented tests
-- `./gradlew lint`: Run Android Lint
+- `./gradlew assembleDebug`: build debug APK
+- `./gradlew assembleRelease bundleRelease`: build release artifacts
+- `./gradlew unitTest`: run Kotest unit suite
+- `./gradlew instrumentedTest`: run emulator/device-backed instrumentation tests
+- `./gradlew coverageUnit`: generate JaCoCo unit coverage report
+- `./gradlew coverageAndroid`: generate JaCoCo instrumentation coverage report
+- `./gradlew coverageMerge`: generate merged JaCoCo report
+- `./gradlew coverageVerify`: enforce minimum unit coverage threshold
+- `./gradlew lintAndStyleCheck`: run Android lint and ktlint
+- `./gradlew dependencyAudit`: run OWASP dependency scan
+- `./gradlew licenseCompliance`: enforce allowed-license policy
+- `./gradlew check`: run CI baseline verification gates
+- `./gradlew fullVerification`: run check + instrumentation + merged coverage
+
+## Android SDK Setup
+
+Do not commit a machine-specific `local.properties` file.
+
+Use one of these approaches:
+
+1. Local development
+- Copy `local.properties.example` to `local.properties`
+- Set `sdk.dir` to your local Android SDK path
+
+2. CI or ephemeral runners
+- Set `ANDROID_HOME` or `ANDROID_SDK_ROOT`
+- Install Android SDK components before Gradle execution
+
+## Maestro E2E
+
+The repository includes Android Maestro smoke flows in `.maestro/`.
+
+Local run:
+
+```bash
+curl -Ls "https://get.maestro.mobile.dev" | bash
+export PATH="$HOME/.maestro/bin:$PATH"
+maestro test .maestro
+```
+
+Detox is intentionally not included in this native Kotlin template. Espresso + Maestro provide lower operational overhead for native Android CI.
 
 ## CI/CD Pipeline
 
-The template uses a workflow caller at `.github/workflows/mobile-pipeline-caller.yml` that delegates execution to the central orchestrator workflow (`master-pipeline-mobile.yml` in `central-workflow`).
+Primary workflow: `.github/workflows/mobile-kotlin-caller.yml`
 
-### Action Required: Update Repository Variables
+It runs:
 
-Since this repository is now a native Kotlin Android project, you **must** update the `MOBILE_SINGLE_SYSTEMS_JSON` repository variable in your GitHub settings.
+1. Central Kotlin orchestrator lanes (governance, build, security, Sonar, versioning/release controls)
+2. Emulator-backed instrumentation tests with JaCoCo Android coverage
+3. Maestro Android E2E suite (when `.maestro` flows exist)
 
-**Recommended value for Kotlin Android:**
+### Required CI Secrets
+
+- `SONAR_TOKEN`
+- `SONAR_PROJECT_KEY`
+- `SONAR_ORGANIZATION`
+- `NVD_API_KEY`
+
+`NVD_API_KEY` is required in CI to keep dependency-audit behavior deterministic.
+
+### Repository Variable Reminder
+
+Set `MOBILE_SINGLE_SYSTEMS_JSON` in GitHub repo variables:
 
 ```json
 {
   "name": "mobile-kotlin",
   "dir": ".",
   "mobile_stack": "kotlin",
+  "gradle_task": "assembleRelease bundleRelease",
   "enable_android_build": true,
   "enable_ios_build": false,
   "version_stream": "mobile-kotlin"
 }
 ```
-
-This configuration ensures the central workflow detects the project type as Kotlin/Android and executes the appropriate Gradle build jobs instead of React Native/Expo jobs.

@@ -3,7 +3,7 @@ import { withGradleProperties } from 'expo/config-plugins';
 
 type RuntimeEnvironment = 'development' | 'staging' | 'production';
 
-const defaultAppName = 'Central Perk';
+const defaultAppName = 'NexOOS';
 const defaultEnvironment: RuntimeEnvironment = 'development';
 const defaultApiBaseUrl = 'https://api.example.com';
 const kotlinVersion = '2.0.21';
@@ -48,20 +48,20 @@ export default function getExpoConfig(): ExpoConfig {
 
   return withCiKotlinGradleProperty({
     name: appName,
-    slug: 'central-perk',
+    slug: 'nexoos',
     version: '1.0.0',
     orientation: 'portrait',
-    scheme: 'centralperk',
+    scheme: 'nexoos',
     userInterfaceStyle: 'automatic',
     jsEngine: 'hermes',
     experiments: {
       tsconfigPaths: true,
     },
     android: {
-      package: 'com.anonymous.centralperk',
+      package: 'com.anonymous.nexoos',
     },
     ios: {
-      bundleIdentifier: 'com.anonymous.centralperk',
+      bundleIdentifier: 'com.anonymous.nexoos',
       infoPlist: {
         ITSAppUsesNonExemptEncryption: false,
       },

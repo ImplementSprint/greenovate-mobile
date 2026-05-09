@@ -57,9 +57,9 @@ describe('getExpoConfig', () => {
     const getExpoConfig = loadExpoConfig();
     const config = getExpoConfig();
 
-    expect(config.name).toBe('Central Perk');
+    expect(config.name).toBe('NexOOS');
     expect(config.extra).toEqual({
-      appName: 'Central Perk',
+      appName: 'NexOOS',
       environment: 'development',
       apiBaseUrl: 'https://api.example.com',
     });

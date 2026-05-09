@@ -25,9 +25,21 @@ out/
 
 # Local configuration
 local.properties
+local.properties.*
+!local.properties.example
 .env
 .env.*
 !.env.example
+
+# Android signing / secrets
+*.jks
+*.keystore
+key.properties
+
+# Generated governance and audit reports
+dependency-check-report.*
+dependency-check-data/
+dependency-license/
 
 # Logs
 *.log
