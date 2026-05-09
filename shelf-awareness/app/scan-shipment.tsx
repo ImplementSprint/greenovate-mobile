@@ -48,7 +48,7 @@ export default function ScanShipmentScreen() {
     if (prefill) {
       lookupShipment(prefill);
     }
-  }, [prefill]);
+  }, [prefill, lookupShipment]);
 
   const lookupShipment = useCallback(async (tracking: string) => {
     const value = cleanBarcode(tracking);
