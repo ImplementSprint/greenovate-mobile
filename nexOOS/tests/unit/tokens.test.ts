@@ -4,15 +4,12 @@ import { spacing } from '@theme/spacing';
 describe('theme tokens', () => {
   it('exposes expected color palette keys', () => {
     expect(colors).toEqual({
-      background: '#FFFFFF',
-      heroBackground: '#F5FAFF',
+      background: '#F6F6F0',
       surface: '#FFFFFF',
-      text: '#0F172A',
-      muted: '#526785',
-      subtle: '#EAF1FA',
-      border: '#E5ECF5',
-      primary: '#155DFF',
-      primaryDark: '#0B45D8',
+      text: '#162521',
+      muted: '#5A6461',
+      border: '#D9DDD7',
+      primary: '#1D6E5C',
     });
   });
 

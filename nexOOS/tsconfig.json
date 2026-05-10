@@ -8,11 +8,8 @@
     "types": ["jest", "node"],
     "paths": {
       "@app/*": ["src/bootstrap/*"],
-      "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],
-      "@context/*": ["src/context/*"],
       "@features/*": ["src/features/*"],
-      "@lib/*": ["src/lib/*"],
       "@navigation/*": ["src/navigation/*"],
       "@theme/*": ["src/theme/*"],
       "@utils/*": ["src/utils/*"]

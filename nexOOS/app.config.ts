@@ -3,7 +3,7 @@ import { withGradleProperties } from 'expo/config-plugins';
 
 type RuntimeEnvironment = 'development' | 'staging' | 'production';
 
-const defaultAppName = 'PharmaQuick';
+const defaultAppName = 'NexOOS';
 const defaultEnvironment: RuntimeEnvironment = 'development';
 const defaultApiBaseUrl = 'https://api.example.com';
 const kotlinVersion = '2.0.21';
