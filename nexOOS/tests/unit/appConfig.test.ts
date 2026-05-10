@@ -22,7 +22,7 @@ describe('appConfig', () => {
     const config = getAppConfig();
 
     expect(config).toEqual({
-      appName: 'NexOOS',
+      appName: 'PharmaQuick',
       environment: 'development',
       apiBaseUrl: 'https://api.example.com',
     });
