@@ -103,10 +103,6 @@ on:
         description: "Preview-only mode (skip version tag push)"
         type: boolean
         default: false
-      ios_destination:
-        description: "iOS destination specifier (generic/platform=iOS Simulator)"
-        type: string
-        default: "generic/platform=iOS Simulator"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
@@ -130,7 +126,6 @@ jobs:
       enable_governance: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_governance || 'true') || true }}
       enable_maestro: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro || 'true') || true }}
       enable_maestro_ios: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro_ios || 'true') || vars.ENABLE_MAESTRO_IOS == 'true' }}
-      ios_destination: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.ios_destination || 'generic/platform=iOS Simulator' }}
       enable_grafana_k6: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_grafana_k6 || 'true') || true }}
       k6_script_path: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.k6_script_path || 'tests/performance' }}
       k6_base_url: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.k6_base_url || '' }}

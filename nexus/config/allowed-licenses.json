@@ -1,0 +1,22 @@
+{
+  "allowedLicenses": [
+    {
+      "moduleLicense": ".*Apache.*2\\.0.*"
+    },
+    {
+      "moduleLicense": ".*MIT.*"
+    },
+    {
+      "moduleLicense": ".*BSD.*"
+    },
+    {
+      "moduleLicense": ".*ISC.*"
+    },
+    {
+      "moduleLicense": ".*Eclipse Public License.*"
+    },
+    {
+      "moduleLicense": ".*CC0.*"
+    }
+  ]
+}
