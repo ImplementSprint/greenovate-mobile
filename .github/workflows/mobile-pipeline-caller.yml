@@ -62,7 +62,7 @@ on:
       enable_sonar:
         description: "Run SonarCloud analysis"
         type: boolean
-        default: false
+        default: true
       enable_governance:
         description: "Run governance checks (Kotlin)"
         type: boolean
@@ -126,7 +126,7 @@ jobs:
       stack_filter: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.stack_filter || 'all' }}
       enable_lint: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_lint || 'true') || true }}
       enable_security_scan: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_security_scan || 'true') || true }}
-      enable_sonar: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_sonar || 'false') || false }}
+      enable_sonar: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_sonar || 'true') || true }}
       enable_governance: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_governance || 'true') || true }}
       enable_maestro: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro || 'true') || true }}
       enable_maestro_ios: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro_ios || 'true') || vars.ENABLE_MAESTRO_IOS == 'true' }}
