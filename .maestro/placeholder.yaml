@@ -1,5 +1,0 @@
-# Placeholder to satisfy CI directory checks.
-# Actual tests are located in android-native/.maestro
-appId: ${APP_ID}
----
-- runFlow: ../android-native/.maestro/root-smoke.yaml
