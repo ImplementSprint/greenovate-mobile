@@ -14,4 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "greenovate-mobile"
 include(":app")
-project(":app").projectDir = file("app")
+project(":app").projectDir = file("android-native/app")
