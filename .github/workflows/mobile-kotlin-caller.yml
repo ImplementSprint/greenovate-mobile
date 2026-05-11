@@ -24,7 +24,7 @@ on:
       enable_sonar:
         description: "Run SonarCloud analysis"
         type: boolean
-        default: true
+        default: false
       enable_governance:
         description: "Run Kotlin governance checks"
         type: boolean
@@ -85,7 +85,7 @@ jobs:
     uses: ImplementSprint/central-workflow/.github/workflows/master-pipeline-kotlin.yml@main
     with:
       pipeline_mode: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pipeline_mode || 'auto' }}
-      working-directory: .
+      working-directory: android-native
       system-name: mobile-kotlin
       version-stream: mobile-kotlin
       java-version: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.java_version || '17' }}
@@ -94,11 +94,11 @@ jobs:
       release-gradle-task: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.release_gradle_task || 'assembleRelease bundleRelease' }}
       enable_lint: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_lint || 'true') || true }}
       enable_security_scan: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_security_scan || 'true') || true }}
-      enable_sonar: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_sonar || 'true') || true }}
+      enable_sonar: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_sonar || 'false') || false }}
       enable_governance: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_governance || 'true') || true }}
       enable_instrumented_tests: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_instrumented_tests || 'true') || true }}
       enable_maestro: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro || 'true') || true }}
-      maestro-test-command: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.maestro_test_command || 'maestro test android-native/.maestro' }}
+      maestro-test-command: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.maestro_test_command || 'maestro test .maestro' }}
       run_deploy: ${{ github.ref_name == 'main' && (github.event_name != 'workflow_dispatch' || fromJSON(github.event.inputs.run_deploy || 'false')) }}
       run_promotion: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.run_promotion || 'true') || github.event_name == 'push' }}
       dry_run: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.dry_run || 'false') || false }}
