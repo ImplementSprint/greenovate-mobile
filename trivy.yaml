@@ -6,7 +6,7 @@ scan:
   skip-dirs:
     - "central-perk"
     - "nexOOS"
-    - "shelf-awareness/ScannerApp"
+    - "scanner-app"
     - "nexus"
 
 vulnerability:
