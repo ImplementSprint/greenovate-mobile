@@ -1,2 +1,2 @@
 @echo off
-android-native\gradlew.bat %*
+android-native\gradlew.bat -p android-native %*
