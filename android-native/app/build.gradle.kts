@@ -71,15 +71,15 @@ jacoco {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.core:core-ktx:${project.property("androidxCoreKtxVersion")}")
+    implementation("androidx.appcompat:appcompat:${project.property("androidxAppcompatVersion")}")
+    implementation("com.google.android.material:material:${project.property("googleMaterialVersion")}")
 
-    testImplementation("io.kotest:kotest-runner-junit5:5.9.1")
-    testImplementation("io.kotest:kotest-assertions-core:5.9.1")
-    testImplementation("io.kotest:kotest-property:5.9.1")
-    testImplementation("io.mockk:mockk:1.13.10")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    testImplementation("io.kotest:kotest-runner-junit5:${project.property("kotestVersion")}")
+    testImplementation("io.kotest:kotest-assertions-core:${project.property("kotestVersion")}")
+    testImplementation("io.kotest:kotest-property:${project.property("kotestVersion")}")
+    testImplementation("io.mockk:mockk:${project.property("mockkVersion")}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${project.property("kotlinxCoroutinesTestVersion")}")
 
     androidTestImplementation("androidx.test:core-ktx:1.5.0")
     androidTestImplementation("androidx.test:runner:1.5.2")
