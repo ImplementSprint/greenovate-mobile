@@ -1,0 +1,5 @@
+appId: com.implementsprint.mobile
+---
+- launchApp
+- assertVisible: "Release Readiness Check"
+- assertVisible: "Validate Readiness"

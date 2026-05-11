@@ -56,9 +56,6 @@ android {
         }
     }
 
-    dependencyLocking {
-        lockAllConfigurations()
-    }
 }
 
 ktlint {
