@@ -1,0 +1,18 @@
+appId: com.pharmacare.pos
+---
+- launchApp
+- clearText:
+    id: "environmentInput"
+- inputText:
+    id: "environmentInput"
+    text: "uat"
+- clearText:
+    id: "apiBaseUrlInput"
+- inputText:
+    id: "apiBaseUrlInput"
+    text: "https://api.example.com"
+- tapOn:
+    id: "validateButton"
+- assertVisible:
+    id: "readinessStatusText"
+    text: "Ready for deployment"
