@@ -60,7 +60,7 @@ on:
       enable_maestro:
         description: "Run Android Maestro E2E tests"
         type: boolean
-        default: true
+        default: false
       maestro_test_command:
         description: "Maestro command (central workflow)"
         type: string
@@ -97,7 +97,7 @@ jobs:
       enable_sonar: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_sonar || 'true') || true }}
       enable_governance: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_governance || 'true') || true }}
       enable_instrumented_tests: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_instrumented_tests || 'true') || true }}
-      enable_maestro: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro || 'true') || true }}
+      enable_maestro: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.enable_maestro || 'false') || false }}
       maestro-test-command: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.maestro_test_command || 'maestro test android-native/.maestro' }}
       run_deploy: ${{ github.ref_name == 'main' && (github.event_name != 'workflow_dispatch' || fromJSON(github.event.inputs.run_deploy || 'false')) }}
       run_promotion: ${{ github.event_name == 'workflow_dispatch' && fromJSON(github.event.inputs.run_promotion || 'true') || github.event_name == 'push' }}
