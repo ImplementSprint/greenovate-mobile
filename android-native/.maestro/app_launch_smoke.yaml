@@ -2,8 +2,10 @@ appId: com.pharmacare.pos
 ---
 - launchApp
 - assertVisible:
-    id: "validateButton"
+    id: "com.pharmacare.pos:id/validateButton"
 - assertVisible:
-    id: "apiBaseUrlInput"
+    id: "com.pharmacare.pos:id/apiBaseUrlInput"
 - assertVisible:
-    id: "environmentInput"
+    id: "com.pharmacare.pos:id/environmentInput"
+- assertVisible:
+    id: "com.pharmacare.pos:id/readinessStatusText"

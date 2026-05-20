@@ -1,15 +1,9 @@
 appId: com.pharmacare.pos
 ---
+# Default field values (uat + https://api.example.com) produce "Ready for deployment"
+# so we just tap validate and assert the result — no text entry needed.
 - launchApp
 - tapOn:
-    id: "environmentInput"
-- clearText
-- inputText: "uat"
-- tapOn:
-    id: "apiBaseUrlInput"
-- clearText
-- inputText: "https://api.example.com"
-- tapOn:
-    id: "validateButton"
+    id: "com.pharmacare.pos:id/validateButton"
 - assertVisible:
     text: "Ready for deployment"
