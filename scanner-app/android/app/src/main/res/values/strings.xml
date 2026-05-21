@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SCM Scanner</string>
+    <string name="perm_camera">android.permission.CAMERA</string>
+</resources>
