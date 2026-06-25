@@ -1,5 +1,0 @@
-import { proxyToBackend } from '@/lib/backend-proxy';
-
-export async function GET(request: Request) {
-  return proxyToBackend(request, { path: '/api/orders/payment/status', method: 'GET', preserveQuery: true });
-}
