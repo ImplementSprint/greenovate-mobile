@@ -43,6 +43,11 @@
     "react-test-renderer": "19.2.3",
     "typescript": "^5.8.3"
   },
+  "overrides": {
+    "shell-quote": "^1.9.0",
+    "ws": "^8.21.0",
+    "fast-xml-builder": "^1.2.0"
+  },
   "engines": {
     "node": ">=20.19.4"
   }
