@@ -57,9 +57,9 @@ describe('getExpoConfig', () => {
     const getExpoConfig = loadExpoConfig();
     const config = getExpoConfig();
 
-    expect(config.name).toBe('Template Repo Mobile Single');
+    expect(config.name).toBe('Central Perk');
     expect(config.extra).toEqual({
-      appName: 'Template Repo Mobile Single',
+      appName: 'Central Perk',
       environment: 'development',
       apiBaseUrl: 'https://api.example.com',
     });
