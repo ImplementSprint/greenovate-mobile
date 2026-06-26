@@ -4,6 +4,8 @@ coverage/
 dist/
 build/
 
+BE-Mobile/
+
 .env
 .env.*
 !.env.example
