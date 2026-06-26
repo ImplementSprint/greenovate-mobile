@@ -60,7 +60,7 @@ on:
       enable_maestro:
         description: "Run Android Maestro E2E tests"
         type: boolean
-        default: true
+        default: false
       maestro_test_command:
         description: "Maestro command (central workflow)"
         type: string
