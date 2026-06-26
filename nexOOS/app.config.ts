@@ -20,7 +20,7 @@ const config: ExpoConfig = {
   },
   extra: {
     appEnv: process.env.EXPO_PUBLIC_APP_ENV || 'development',
-    apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || 'http://10.0.2.2:3001/api',
+    apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || 'http://10.0.2.2:3001/api', // NOSONAR: emulator-loopback dev fallback only; real environments inject an https URL via EXPO_PUBLIC_API_BASE_URL
   },
 };
 

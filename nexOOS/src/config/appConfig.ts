@@ -12,6 +12,6 @@ export const appConfig: AppConfig = {
   appName: process.env.EXPO_PUBLIC_APP_NAME?.trim() || 'System4 Mobile',
   environment: process.env.EXPO_PUBLIC_APP_ENV?.trim() || 'development',
   apiBaseUrl: trimTrailingSlash(
-    process.env.EXPO_PUBLIC_API_BASE_URL?.trim() || 'http://10.0.2.2:3001/api',
+    process.env.EXPO_PUBLIC_API_BASE_URL?.trim() || 'http://10.0.2.2:3001/api', // NOSONAR: emulator-loopback dev fallback only; real environments inject an https URL via EXPO_PUBLIC_API_BASE_URL
   ),
 };
