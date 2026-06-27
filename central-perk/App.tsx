@@ -36,6 +36,8 @@ import {
   txDate,
   txLabel,
   updateMemberProfile,
+  voucherCode,
+  voucherId,
 } from "./src/lib/data";
 import { hasSupabaseConfig, missingConfigMessage } from "./src/lib/supabase";
 import type { AppNotification, LoginActivity, LoyaltyTransaction, Member, RedemptionVoucher, Reward, Role } from "./src/lib/types";
@@ -768,8 +770,8 @@ function CustomerRewards({
   const visibleRewards = rewards.filter((reward) => category === "All" || String(reward.category || "General") === category);
 
   const makeVoucher = (reward: Reward, method: "in-store" | "online" = "in-store"): RedemptionVoucher => {
-    const id = `mobile-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-    const code = `CP-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+    const id = voucherId();
+    const code = voucherCode();
     const memberId = String(member?.member_number || member?.memberId || memberKey(member));
     return {
       id,

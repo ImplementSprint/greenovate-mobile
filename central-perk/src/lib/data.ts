@@ -1,4 +1,5 @@
 import Constants from "expo-constants";
+import * as Crypto from "expo-crypto";
 import { supabase } from "./supabase";
 import type { AppNotification, LoyaltyTransaction, Member, RedemptionVoucher, Reward } from "./types";
 
@@ -75,8 +76,24 @@ export async function apiPatch<T>(path: string, body: unknown): Promise<T> {
   return payload as T;
 }
 
+function randomHex(byteCount = 8): string {
+  return Array.from(Crypto.getRandomBytes(byteCount), (b) =>
+    b.toString(16).padStart(2, "0"),
+  ).join("");
+}
+
 function idempotencyKey(prefix: string) {
-  return `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return `${prefix}-${Date.now()}-${randomHex(8)}`;
+}
+
+export function voucherId() {
+  return `mobile-${Date.now()}-${randomHex(8)}`;
+}
+
+const VOUCHER_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+export function voucherCode() {
+  return `CP-${Array.from(Crypto.getRandomBytes(6), (b) => VOUCHER_CODE_ALPHABET[b % VOUCHER_CODE_ALPHABET.length]).join("")}`;
 }
 
 export function fullName(member?: Member | null) {
