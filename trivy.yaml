@@ -1,6 +1,6 @@
 # Trivy configuration.
-# No skip-dirs: every project folder (central-perk, nexOOS, scanner-app,
-# nexus, react-native, shelf-awareness, ...) is scanned, matching the
+# No skip-dirs: every project folder (central-perk, nexOOS, nexus,
+# shelf-awareness, ...) is scanned, matching the
 # default behavior on branches that have no trivy.yaml.
 
 vulnerability:
