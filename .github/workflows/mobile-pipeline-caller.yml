@@ -47,9 +47,9 @@ on:
         options: [auto, single, multi]
         default: auto
       stack_filter:
-        description: "Optional stack filter (all|expo|react-native|kotlin)"
+        description: "Optional stack filter (all|expo|kotlin)"
         type: choice
-        options: [all, expo, react-native, kotlin]
+        options: [all, expo, kotlin]
         default: all
       enable_lint:
         description: "Run lint checks"
