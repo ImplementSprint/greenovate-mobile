@@ -29,6 +29,7 @@ import { toMoney } from '@/utils/money';
 import { profileStorage } from '@/utils/storage';
 
 import { CheckoutSteps } from './CheckoutSteps';
+import { checkoutStyles } from './checkoutStyles';
 
 const DELIVERY_METHODS = [
   {
@@ -524,6 +525,7 @@ export function ShippingScreen({ navigation }: ScreenProps<'Shipping'>) {
 }
 
 const styles = StyleSheet.create({
+  ...checkoutStyles,
   content: {
     gap: spacing.lg,
     paddingHorizontal: spacing.lg,
@@ -533,22 +535,6 @@ const styles = StyleSheet.create({
   topRow: {
     gap: spacing.md,
     paddingTop: spacing.sm,
-  },
-  backLink: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    gap: spacing.xs,
-  },
-  backArrow: {
-    color: '#6c84aa',
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  backText: {
-    color: '#50688a',
-    fontSize: 13,
-    fontWeight: '700',
   },
   shippingCard: {
     gap: spacing.md,
@@ -574,11 +560,6 @@ const styles = StyleSheet.create({
   headingIconText: {
     fontSize: 14,
   },
-  title: {
-    color: colors.text,
-    fontSize: 18,
-    fontWeight: '900',
-  },
   groupCard: {
     gap: spacing.md,
     borderColor: colors.border,
@@ -586,12 +567,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     backgroundColor: colors.surface,
     padding: spacing.md,
-  },
-  overline: {
-    color: '#8aa0c4',
-    fontSize: 11,
-    fontWeight: '900',
-    letterSpacing: 2,
   },
   overlineBlue: {
     color: colors.primary,
@@ -609,10 +584,6 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     backgroundColor: '#f9fbff',
     padding: spacing.md,
-  },
-  methodCardActive: {
-    borderColor: colors.primary,
-    backgroundColor: '#eef4ff',
   },
   methodKicker: {
     color: '#8aa0c4',
@@ -807,49 +778,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 1.2,
   },
-  summaryLine: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  summaryLabel: {
-    color: colors.textMuted,
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  summaryValue: {
-    color: colors.text,
-    fontSize: 13,
-    fontWeight: '900',
-  },
-  totalRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    borderTopColor: colors.border,
-    borderTopWidth: 1,
-    paddingTop: spacing.md,
-  },
-  totalLabel: {
-    color: colors.text,
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  totalValue: {
-    color: colors.text,
-    fontSize: 20,
-    fontWeight: '900',
-  },
-  totalValueWrap: {
-    alignItems: 'flex-end',
-    gap: 2,
-  },
-  totalVat: {
-    color: '#8aa0c4',
-    fontSize: 10,
-    fontWeight: '800',
-    textTransform: 'uppercase',
-  },
   noticeInfoCard: {
     borderColor: '#9dc0ff',
     borderWidth: 1,
@@ -892,22 +820,6 @@ const styles = StyleSheet.create({
   },
   actionRow: {
     gap: spacing.sm,
-  },
-  primaryAction: {
-    minHeight: 52,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 18,
-    backgroundColor: colors.primary,
-    paddingHorizontal: spacing.lg,
-  },
-  primaryActionDisabled: {
-    opacity: 0.5,
-  },
-  primaryActionText: {
-    color: colors.surface,
-    fontSize: 16,
-    fontWeight: '900',
   },
   backCartButton: {
     minHeight: 52,
@@ -1035,7 +947,5 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     paddingVertical: spacing.md,
   },
-  pressed: {
-    opacity: 0.82,
-  },
+
 });

@@ -9,6 +9,7 @@ import { spacing } from '@/theme/spacing';
 import { toMoney } from '@/utils/money';
 
 import { CheckoutSteps } from './CheckoutSteps';
+import { checkoutStyles } from './checkoutStyles';
 
 const paymentLabel = (method: CheckoutPaymentMethod) => {
   switch (method) {
@@ -245,6 +246,7 @@ export function ReviewScreen({ navigation, route }: ScreenProps<'Review'>) {
 }
 
 const styles = StyleSheet.create({
+  ...checkoutStyles,
   content: {
     gap: spacing.lg,
     paddingHorizontal: spacing.lg,
@@ -255,51 +257,9 @@ const styles = StyleSheet.create({
   topRow: {
     gap: spacing.md,
   },
-  backLink: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    gap: spacing.xs,
-  },
-  backArrow: {
-    color: '#6c84aa',
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  backText: {
-    color: '#50688a',
-    fontSize: 13,
-    fontWeight: '700',
-  },
-  card: {
-    gap: spacing.md,
-    borderColor: colors.border,
-    borderWidth: 1,
-    borderRadius: 28,
-    backgroundColor: colors.surface,
-    padding: spacing.lg,
-  },
-  titleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.md,
-  },
-  iconBubble: {
-    width: 30,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 15,
-    backgroundColor: '#dbeafe',
-  },
   iconText: {
     color: colors.primary,
     fontSize: 14,
-    fontWeight: '900',
-  },
-  title: {
-    color: colors.text,
-    fontSize: 18,
     fontWeight: '900',
   },
   infoGrid: {
@@ -310,12 +270,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#f8fbff',
     padding: spacing.md,
-  },
-  overline: {
-    color: '#8aa0c4',
-    fontSize: 11,
-    fontWeight: '900',
-    letterSpacing: 2,
   },
   infoName: {
     color: colors.text,
@@ -391,20 +345,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.surfaceMuted,
   },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  imageFallback: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.surfaceMuted,
-  },
-  imageFallbackText: {
-    color: colors.primaryDark,
-    fontWeight: '900',
-  },
   orderCopy: {
     flex: 1,
     gap: 2,
@@ -451,11 +391,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     backgroundColor: '#eef2f8',
   },
-  backButtonText: {
-    color: colors.text,
-    fontSize: 14,
-    fontWeight: '900',
-  },
   primaryButton: {
     flex: 2,
     minHeight: 44,
@@ -467,12 +402,5 @@ const styles = StyleSheet.create({
   primaryButtonDisabled: {
     opacity: 0.55,
   },
-  primaryButtonText: {
-    color: colors.surface,
-    fontSize: 14,
-    fontWeight: '900',
-  },
-  pressed: {
-    opacity: 0.82,
-  },
+
 });

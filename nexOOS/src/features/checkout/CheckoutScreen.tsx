@@ -11,6 +11,7 @@ import { spacing } from '@/theme/spacing';
 import { toMoney } from '@/utils/money';
 
 import { CheckoutSteps } from './CheckoutSteps';
+import { checkoutStyles } from './checkoutStyles';
 
 const MINIMUM_ORDER = 40;
 const FREE_DELIVERY_TARGET = 500;
@@ -223,27 +224,12 @@ export function CheckoutScreen({ navigation }: ScreenProps<'Checkout'>) {
 }
 
 const styles = StyleSheet.create({
+  ...checkoutStyles,
   content: {
     backgroundColor: '#f7faff',
   },
   topRow: {
     gap: spacing.md,
-  },
-  backLink: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    gap: spacing.xs,
-  },
-  backArrow: {
-    color: '#6c84aa',
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  backText: {
-    color: '#50688a',
-    fontSize: 13,
-    fontWeight: '700',
   },
   cartCard: {
     gap: spacing.md,
@@ -284,20 +270,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     overflow: 'hidden',
     backgroundColor: colors.surfaceMuted,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  imageFallback: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.surfaceMuted,
-  },
-  imageFallbackText: {
-    color: colors.primaryDark,
-    fontWeight: '900',
   },
   productInfo: {
     flex: 1,
@@ -407,11 +379,6 @@ const styles = StyleSheet.create({
   summaryList: {
     gap: spacing.sm,
   },
-  summaryLine: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   summaryLineLabel: {
     color: colors.textMuted,
     fontSize: 14,
@@ -496,23 +463,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 18,
   },
-  primaryAction: {
-    minHeight: 52,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 18,
-    backgroundColor: colors.primary,
-    paddingHorizontal: spacing.lg,
-  },
-  primaryActionDisabled: {
-    opacity: 0.5,
-  },
-  primaryActionText: {
-    color: colors.surface,
-    fontSize: 16,
-    fontWeight: '900',
-  },
-  pressed: {
-    opacity: 0.82,
-  },
+
 });
