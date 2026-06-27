@@ -10,12 +10,7 @@ import { colors } from '@/theme/colors';
 import { spacing } from '@/theme/spacing';
 import { toMoney } from '@/utils/money';
 
-const CHECKOUT_STEPS = [
-  { number: 1, label: 'Cart' },
-  { number: 2, label: 'Shipping' },
-  { number: 3, label: 'Payment' },
-  { number: 4, label: 'Review' },
-];
+import { CheckoutSteps } from './CheckoutSteps';
 
 const MINIMUM_ORDER = 40;
 const FREE_DELIVERY_TARGET = 500;
@@ -73,24 +68,7 @@ export function CheckoutScreen({ navigation }: ScreenProps<'Checkout'>) {
           <Text style={styles.backText}>Back to Shop</Text>
         </Pressable>
 
-        <View style={styles.stepsRow}>
-          {CHECKOUT_STEPS.map((step, index) => {
-            const active = index === 0;
-
-            return (
-              <View key={step.number} style={styles.stepItem}>
-                <View style={[styles.stepBubble, active && styles.stepBubbleActive]}>
-                  <Text style={[styles.stepNumber, active && styles.stepNumberActive]}>
-                    {step.number}
-                  </Text>
-                </View>
-                <Text style={[styles.stepLabel, active && styles.stepLabelActive]}>
-                  {step.label}
-                </Text>
-              </View>
-            );
-          })}
-        </View>
+        <CheckoutSteps current={0} />
       </View>
 
       <View style={styles.cartCard}>
@@ -266,43 +244,6 @@ const styles = StyleSheet.create({
     color: '#50688a',
     fontSize: 13,
     fontWeight: '700',
-  },
-  stepsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: spacing.sm,
-  },
-  stepItem: {
-    flex: 1,
-    alignItems: 'center',
-    gap: 4,
-  },
-  stepBubble: {
-    width: 28,
-    height: 28,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 14,
-    backgroundColor: '#e7eef8',
-  },
-  stepBubbleActive: {
-    backgroundColor: colors.primary,
-  },
-  stepNumber: {
-    color: '#8aa0c4',
-    fontSize: 12,
-    fontWeight: '900',
-  },
-  stepNumberActive: {
-    color: colors.surface,
-  },
-  stepLabel: {
-    color: '#8aa0c4',
-    fontSize: 10,
-    fontWeight: '700',
-  },
-  stepLabelActive: {
-    color: colors.primary,
   },
   cartCard: {
     gap: spacing.md,
