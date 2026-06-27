@@ -1,53 +1,18 @@
-import { existsSync, readdirSync, statSync } from 'node:fs';
-import { relative, resolve } from 'node:path';
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
-function collectFlowFiles(rootDir: string): string[] {
-  const stack: string[] = [rootDir];
-  const flowFiles: string[] = [];
+const maestroDir = join(process.cwd(), '.maestro');
 
-  while (stack.length > 0) {
-    const currentPath = stack.pop();
-    if (!currentPath) {
-      continue;
-    }
-
-    for (const entry of readdirSync(currentPath, { withFileTypes: true })) {
-      const fullPath = resolve(currentPath, entry.name);
-
-      if (entry.isDirectory()) {
-        stack.push(fullPath);
-        continue;
-      }
-
-      if (entry.isFile() && (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml'))) {
-        flowFiles.push(fullPath);
-      }
-    }
-  }
-
-  return flowFiles.sort((left, right) => left.localeCompare(right));
+if (!existsSync(maestroDir)) {
+  throw new Error('.maestro directory is missing.');
 }
 
-function main(): void {
-  const maestroDir = resolve(process.cwd(), '.maestro');
+const flowFiles = readdirSync(maestroDir).filter((file: string) =>
+  /\.(yaml|yml)$/i.test(file),
+);
 
-  if (!existsSync(maestroDir) || !statSync(maestroDir).isDirectory()) {
-    console.error('Required .maestro directory was not found.');
-    console.error('Create .maestro and add at least one flow file (*.yaml or *.yml).');
-    process.exit(1);
-  }
-
-  const flowFiles = collectFlowFiles(maestroDir);
-  if (flowFiles.length === 0) {
-    console.error('No Maestro flow files were found under .maestro/.');
-    console.error('Add at least one flow file (*.yaml or *.yml).');
-    process.exit(1);
-  }
-
-  console.log(`Found ${flowFiles.length} Maestro flow file(s):`);
-  for (const flowFile of flowFiles) {
-    console.log(`- ${relative(process.cwd(), flowFile)}`);
-  }
+if (flowFiles.length === 0) {
+  throw new Error('.maestro must contain at least one flow file.');
 }
 
-main();
+console.log(`Found ${flowFiles.length} Maestro flow file(s).`);

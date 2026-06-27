@@ -1,85 +1,27 @@
 import type { ExpoConfig } from 'expo/config';
-import { withGradleProperties } from 'expo/config-plugins';
 
-type RuntimeEnvironment = 'development' | 'staging' | 'production';
-
-const defaultAppName = 'NexOOS';
-const defaultEnvironment: RuntimeEnvironment = 'development';
-const defaultApiBaseUrl = 'https://api.example.com';
-const kotlinVersion = '2.0.21';
-const allowedEnvironments = new Set<RuntimeEnvironment>(['development', 'staging', 'production']);
-
-function withCiKotlinGradleProperty(config: ExpoConfig): ExpoConfig {
-  return withGradleProperties(config, (gradleConfig) => {
-    const properties = gradleConfig.modResults;
-    let hasKotlinVersion = false;
-
-    for (const item of properties) {
-      if (item.type === 'property' && item.key === 'kotlinVersion') {
-        item.value = kotlinVersion;
-        hasKotlinVersion = true;
-      }
-    }
-
-    if (!hasKotlinVersion) {
-      properties.push({
-        type: 'property',
-        key: 'kotlinVersion',
-        value: kotlinVersion,
-      });
-    }
-
-    return gradleConfig;
-  });
-}
-
-function resolveEnvironment(value: string | undefined): RuntimeEnvironment {
-  if (value && allowedEnvironments.has(value as RuntimeEnvironment)) {
-    return value as RuntimeEnvironment;
-  }
-
-  return defaultEnvironment;
-}
-
-export default function getExpoConfig(): ExpoConfig {
-  const appName = process.env.EXPO_PUBLIC_APP_NAME ?? defaultAppName;
-  const environment = resolveEnvironment(process.env.EXPO_PUBLIC_APP_ENV);
-  const apiBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL ?? defaultApiBaseUrl;
-
-  return withCiKotlinGradleProperty({
-    name: appName,
-    slug: 'nexoos',
-    version: '1.0.0',
-    orientation: 'portrait',
-    scheme: 'nexoos',
-    userInterfaceStyle: 'automatic',
-    jsEngine: 'hermes',
-    experiments: {
-      tsconfigPaths: true,
+const config: ExpoConfig = {
+  name: process.env.EXPO_PUBLIC_APP_NAME || 'System4 Mobile',
+  slug: 'mobile-system4',
+  scheme: 'system4mobile',
+  version: '0.1.0',
+  orientation: 'portrait',
+  userInterfaceStyle: 'light',
+  assetBundlePatterns: ['**/*'],
+  ios: {
+    supportsTablet: true,
+    bundleIdentifier: 'com.system4.mobile',
+  },
+  android: {
+    package: 'com.system4.mobile',
+    adaptiveIcon: {
+      backgroundColor: '#0f766e',
     },
-    android: {
-      package: 'com.anonymous.nexoos',
-    },
-    ios: {
-      bundleIdentifier: 'com.anonymous.nexoos',
-      infoPlist: {
-        ITSAppUsesNonExemptEncryption: false,
-      },
-    },
-    plugins: [
-      [
-        'expo-build-properties',
-        {
-          android: {
-            kotlinVersion,
-          },
-        },
-      ],
-    ],
-    extra: {
-      appName,
-      environment,
-      apiBaseUrl,
-    },
-  });
-}
+  },
+  extra: {
+    appEnv: process.env.EXPO_PUBLIC_APP_ENV || 'development',
+    apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || 'http://10.0.2.2:3001/api', // NOSONAR: emulator-loopback dev fallback only; real environments inject an https URL via EXPO_PUBLIC_API_BASE_URL
+  },
+};
+
+export default config;
