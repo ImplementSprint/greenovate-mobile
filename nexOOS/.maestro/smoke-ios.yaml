@@ -1,0 +1,7 @@
+appId: com.anonymous.nexoos
+tags:
+    - ios
+---
+- launchApp:
+    clearState: true
+- assertVisible: "NexOOS"

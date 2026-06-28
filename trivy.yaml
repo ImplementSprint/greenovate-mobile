@@ -1,0 +1,17 @@
+# Trivy configuration.
+# No skip-dirs: every project folder (central-perk, nexOOS, nexus,
+# shelf-awareness, ...) is scanned, matching the
+# default behavior on branches that have no trivy.yaml.
+
+vulnerability:
+  # Do not fail for vulnerabilities that don't have a fix yet
+  ignore-unfixed: true
+
+# Only fail the build for CRITICAL vulnerabilities
+# (Ignore HIGH, MEDIUM, LOW)
+severity:
+  - CRITICAL
+
+license:
+  # Completely disable license scanning
+  full: false

@@ -2,9 +2,9 @@
 
 This repository hosts the mobile applications for the Greenovate tribe:
 
-- **Shelf Awareness** (Expo)
+- **Shelf Awareness** (Expo) — includes the barcode scanner feature
 - **Central Perk** (Expo)
+- **nexOOS** (Expo)
 - **Nexus** (Kotlin)
 
-## Setup
 Refer to each application's directory for specific running instructions.
