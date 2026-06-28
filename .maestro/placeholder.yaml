@@ -1,0 +1,5 @@
+# Placeholder to satisfy CI directory checks.
+# Actual tests are located in nexus/.maestro
+appId: ${APP_ID}
+---
+- runFlow: ../nexus/.maestro/root-smoke.yaml

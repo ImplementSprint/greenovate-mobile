@@ -1,0 +1,5 @@
+appId: com.system4.mobile
+---
+- launchApp
+- assertVisible: "System4 Mobile"
+- assertVisible: "Shop"
