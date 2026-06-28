@@ -1,5 +1,4 @@
-appId: com.implementsprint.mobile
+appId: com.pharmacare.pos
 ---
 - launchApp
-- assertVisible: "Release Readiness Check"
-- assertVisible: "Validate Readiness"
+- assertVisible: "PharmaCare"
