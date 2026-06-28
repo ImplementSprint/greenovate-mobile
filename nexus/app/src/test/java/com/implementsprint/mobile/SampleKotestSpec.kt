@@ -11,12 +11,11 @@ class SampleKotestSpec :
     FunSpec({
         val evaluator = ReleaseReadinessEvaluator()
 
+        fun evaluate(apiBaseUrl: String, environment: String) =
+            evaluator.evaluate(apiBaseUrl = apiBaseUrl, environment = environment)
+
         test("marks valid uat endpoint as ready") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = API_URL,
-                    environment = "uat",
-                )
+            val result = evaluate(API_URL, "uat")
 
             result.isReady shouldBe true
             result.summary shouldBe "Ready for deployment"
@@ -24,11 +23,7 @@ class SampleKotestSpec :
         }
 
         test("rejects blank api base url") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "   ",
-                    environment = "uat",
-                )
+            val result = evaluate("   ", "uat")
 
             result.isReady shouldBe false
             result.summary.contains("Not ready") shouldBe true
@@ -37,88 +32,56 @@ class SampleKotestSpec :
         }
 
         test("rejects insecure endpoint for production-like environments") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "http://api.example.com",
-                    environment = "main",
-                )
+            val result = evaluate("http://api.example.com", "main")
 
             result.isReady shouldBe false
             result.violations shouldContain "Production-like environments require HTTPS"
         }
 
         test("rejects localhost endpoints for production-like environments") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "https://localhost:8080",
-                    environment = "production",
-                )
+            val result = evaluate("https://localhost:8080", "production")
 
             result.isReady shouldBe false
             result.violations shouldContain "Production-like environments cannot use localhost endpoints"
         }
 
         test("rejects mock path endpoints for production-like environments") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "$API_URL/mock/users",
-                    environment = "uat",
-                )
+            val result = evaluate("$API_URL/mock/users", "uat")
 
             result.isReady shouldBe false
             result.violations shouldContain "Production-like environments cannot use mock endpoints"
         }
 
         test("rejects uppercase mock path endpoints for production-like environments") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "$API_URL/MOCK/users",
-                    environment = "main",
-                )
+            val result = evaluate("$API_URL/MOCK/users", "main")
 
             result.isReady shouldBe false
             result.violations shouldContain "Production-like environments cannot use mock endpoints"
         }
 
         test("allows localhost endpoint for development") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "https://localhost:8080",
-                    environment = "development",
-                )
+            val result = evaluate("https://localhost:8080", "development")
 
             result.isReady shouldBe true
             result.summary shouldBe "Ready for deployment"
         }
 
         test("requires valid environment value") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = API_URL,
-                    environment = "preview",
-                )
+            val result = evaluate(API_URL, "preview")
 
             result.isReady shouldBe false
             result.violations shouldContain "Environment must be one of development, test, uat, main, production"
         }
 
         test("rejects non-https non-localhost endpoint for test environment") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "http://staging.example.com",
-                    environment = "test",
-                )
+            val result = evaluate("http://staging.example.com", "test")
 
             result.isReady shouldBe false
             result.violations shouldContain "Test environment must use HTTPS unless running against localhost"
         }
 
         test("returns multiple violations for invalid production-like configuration") {
-            val result =
-                evaluator.evaluate(
-                    apiBaseUrl = "http://localhost/mock",
-                    environment = "main",
-                )
+            val result = evaluate("http://localhost/mock", "main")
 
             result.isReady shouldBe false
             result.violations.shouldContainAll(

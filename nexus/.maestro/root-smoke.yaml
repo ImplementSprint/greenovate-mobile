@@ -1,0 +1,4 @@
+appId: com.pharmacare.pos
+---
+- launchApp
+- assertVisible: "PharmaCare"

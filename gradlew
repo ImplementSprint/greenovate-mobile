@@ -1,2 +1,2 @@
 #!/bin/sh
-./android-native/gradlew -p android-native "$@"
+./nexus/gradlew -p nexus "$@"
